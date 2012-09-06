@@ -3,3 +3,32 @@ set -o vi
 if [ -f ~/.bashrc ]; then
 	source ~/.bashrc
 fi
+
+export PS1='\e[7m\w\e[0m $(parse_git_branch)\n\h > '
+
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+# MacPorts Installer addition on 2011-11-08_at_11:35:59: adding an appropriate PATH variable for use with MacPorts.
+export PATH=/opt/local/bin:/opt/local/sbin:usr/local/bin:$PATH
+
+# Finished adapting your PATH environment variable for use with MacPorts.
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+
+#. ~/.nvm/nvm.sh
+export NODE_PATH=/usr/local/lib/node_modules
+
+# ...........................................................................
+# nodejs
+# ...........................................................................
+function updateNodeInstall() {
+  mkdir -pv ~/local
+  mkdir -pv ~/node-latest-install
+  cd ~/node-latest-install
+  curl http://nodejs.org/dist/node-latest.tar.gz | tar xz --strip-components=1
+  ./configure
+  export JOBS=3
+  make install
+  cd -
+}

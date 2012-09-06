@@ -1,0 +1,79 @@
+" Vim Resource Configuration File
+
+" The easy way to install vim plugins
+call pathogen#infect()
+call pathogen#helptags()
+
+"" Basic setup
+set nocompatible                  " choose no compatibility with legacy vi
+syntax enable
+set encoding=utf-8
+set showcmd                       " display incomplete commands
+filetype plugin indent on         " load file type plugins + indentation
+
+
+"" My setup
+set nobackup    " do not keep backups
+set nowrap      " no desire to wrap; looks ugly
+set ruler
+set nu
+set history=250
+
+
+"" Whitespace
+set smarttab
+set smartindent
+set expandtab                     " use spaces, not tabs
+set backspace=indent,eol,start    " backspace through everything in insert mode
+""set textwidth=79                " right margin set at 79 chars
+
+"" Set Yon Tabs
+set tabstop=4                     " a tab is four (4) spaces
+set shiftwidth=4        
+set softtabstop=4
+
+
+ "" Borrowed Configuration from Bram Moolenaar <Bram@vim.org>
+set ch=2                          " Make command line two lines high
+set mousehide                     " Hide the mouse when typing text
+
+"" I like highlighting strings inside C comments
+  let c_comment_strings=1
+
+"" Odd-ass associations
+au BufNewFile,BufRead *.cls set filetype=java
+au BufNewFile,BufRead *.m set filetype=C
+
+"" Unclutter swap files and backups
+" setbackupdir=/home/austin/junk
+" setdirectory=/home/austin/junk
+
+"" FORCE YOURSELF TO USE VIM IDIOT
+inoremap <Up>       <NOP>
+inoremap <Down>     <NOP>
+inoremap <Left>     <NOP>
+inoremap <Right>    <NOP>
+noremap <Up>        <NOP>
+noremap <Down>      <NOP>
+noremap <Left>      <NOP>
+noremap <Right>     <NOP>
+
+"" Coffee Script Support
+" recompile coffee script on write
+au BufWritePost *.coffee silent CoffeeMake! -b | cope
+
+" Only do this for Vim version 5.0 and later.
+if version >= 500
+
+  " I like highlighting strings inside C comments
+  let c_comment_strings=1
+
+  " Switch on syntax highlighting if it wasn't on yet.
+  if !exists("syntax_on")
+    syntax on
+  endif
+
+  " Switch on search pattern highlighting.
+  set hlsearch
+
+endif
