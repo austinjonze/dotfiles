@@ -1,17 +1,18 @@
 $homedir = ENV['HOME']
 
-task :copy_bashrc do
+task :bashrc do
     puts "Copy bashrc"
     bashrc = $homedir + '/.bashrc'
-    puts File.exists?(bashrc)
+    bashrcFile = './files/bashrc'
+    FileUtils.cp_r(bashrcFile, bashrc)
 end
 
-task :copy_bash_profile => 'copy_bashrc' do
-    puts "Copy bash profile to $HOME"
+task :bash_profile => 'bashrc' do
+    puts "Copy bash_profile to $HOME"
     bash_profile = $homedir + '/.bash_profile'
-    puts File.exists?(bash_profile)
+    bashProfileFile = './files/bash_profile'
+    FileUtils.cp_r(bashProfileFile, bash_profile)
 end
-
 
 task :copy_vim do
     dotvim = $homedir + '/.vim'
