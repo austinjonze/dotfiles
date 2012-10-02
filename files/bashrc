@@ -34,7 +34,7 @@ if [[ `uname` == 'Linux' ]]; then
     alias chrome="chromium-browser > /dev/null 2>&1"
 elif [[ `uname` == 'Darwin' ]]; then
     # mac aliases
-    alias objc = 'gcc -arch i386 -lobjc -framework Cocoa'
+    alias objc='gcc -arch i386 -lobjc -framework Cocoa'
     alias chromefile='open /Application/Google\ Chrome.app --args --allow-file-access-from-files'
 
     # MacPorts Installer addition on 2011-11-08_at_11:35:59: adding an appropriate PATH variable for use with MacPorts.
@@ -78,6 +78,7 @@ function updateGoInstall() {
         hg pull -v
         hg update -v release 
         ./all.bash
+        cd .
     else
         echo "pull source from google code"
     fi
