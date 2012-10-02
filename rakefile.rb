@@ -1,17 +1,18 @@
 $homedir = ENV['HOME']
 
 task :bashrc do
-    puts "Copy bashrc"
-    bashrc = $homedir + '/.bashrc'
+    dot_bashrc = $homedir + '/.bashrc'
     bashrcFile = './files/bashrc'
-    FileUtils.cp_r(bashrcFile, bashrc)
+    FileUtils.cp_r(dot_bashrc, dot_bashrc + '.bak')
+    FileUtils.cp_r(bashrcFile, dot_bashrc)
 end
 
-task :bash_profile => 'bashrc' do
-    puts "Copy bash_profile to $HOME"
-    bash_profile = $homedir + '/.bash_profile'
+task :bash => 'bashrc' do
+    puts "Update bashrc & bash_profile"
+    dot_bash_profile = $homedir + '/.bash_profile'
     bashProfileFile = './files/bash_profile'
-    FileUtils.cp_r(bashProfileFile, bash_profile)
+    FileUtils.cp_r(dot_bash_profile, dot_bash_profile + '.bak')
+    FileUtils.cp_r(bashProfileFile, dot_bash_profile)
 end
 
 task :copy_vim do
@@ -34,14 +35,6 @@ task :copy_sublime_settings do
     puts "copy sublime settings appropriately"
 end
 
-task :update_bashrc do
-    puts "Update .bashrc"
-end
-
-task :update_bash_profile do
-    puts "Update .bash_profile"
-end
-
 task :update_vimrc do
     puts "Update .vimrc in repo"
 end
@@ -50,6 +43,6 @@ task :update_vim do
     puts "Update vim in repo"
 end
 
-task :default => [:copy_bash_profile, :copy_vimrc]
+task :default => [:bash]
 
-task :update_all => [:update_vimrc, :update_vim, :update_bashrc, :update_bash_profile]
+task :update_all => [:bash]

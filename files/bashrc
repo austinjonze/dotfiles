@@ -1,33 +1,96 @@
 set -o vi
 
-export PS1='\e[7m\w\e[0m $(parse_git_branch)\n\h > '
+if [ -n `which subl` ]; then
+    export EDITOR='subl -w'
+fi
 
-# Aliases
-alias chrome="chromium-browser > /dev/null 2>&1"
 
-parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
+if [ -d $HOME/bin ]; then
+    case ":$PATH:" in 
+        *":/usr/local/bin:$HOME/bin:"*) :;;
+    *) PATH="$PATH:/usr/local/bin:$HOME/bin";;
+    esac
+fi
 
-# MacPorts Installer addition on 2011-11-08_at_11:35:59: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:usr/local/bin:$PATH
+if [ -d $HOME/src/go ]; then
 
-# Finished adapting your PATH environment variable for use with MacPorts.
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+    export GOROOT=$HOME/src/go
 
-#. ~/.nvm/nvm.sh
-export NODE_PATH=/usr/local/lib/node_modules
+    # Keep from duplicating path on sourc'ng
+    case ":$PATH:" in 
+        *":$GOROOT/bin:"*) :;;
+    *) PATH="$PATH:$GOROOT/bin";;
+    esac
+fi
+
+if [ -n `which git` ]; then
+    alias gitco='git checkout'
+    alias gitbr='git branch'
+fi
+
+
+# OS Specifics (i.e. Linux or Mac)
+if [[ `uname` == 'Linux' ]]; then
+    alias chrome="chromium-browser > /dev/null 2>&1"
+elif [[ `uname` == 'Darwin' ]]; then
+    # mac aliases
+    alias objc = 'gcc -arch i386 -lobjc -framework Cocoa'
+    alias chromefile='open /Application/Google\ Chrome.app --args --allow-file-access-from-files'
+
+    # MacPorts Installer addition on 2011-11-08_at_11:35:59: adding an appropriate PATH variable for use with MacPorts.
+    case ":$PATH:" in 
+        *":/opt/local/bin:/opt/local/sbin:"*) :;;
+    *) PATH="$PATH:/opt/local/bin:/opt/local/sbin";;
+    esac
+    #export PATH=/opt/local/bin:/opt/local/sbin:usr/local/bin:$PATH
+
+    # Finished adapting your PATH environment variable for use with MacPorts.
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+
+    # This is work related
+    rvm use 1.9.2-p290@orion_tests
+else
+    echo "Amnesia"
+fi
+
+
+# FUNCTIONS
 
 # ...........................................................................
 # nodejs
 # ...........................................................................
 function updateNodeInstall() {
-  mkdir -pv ~/local
-  mkdir -pv ~/node-latest-install
-  cd ~/node-latest-install
+  mkdir -pv ~/src/node-latest-install
+  cd ~/src/node-latest-install
   curl http://nodejs.org/dist/node-latest.tar.gz | tar xz --strip-components=1
   ./configure
   export JOBS=3
-  make install
+  sudo make install
   cd -
+
+  export NODE_PATH=/usr/local/lib/mode_modules
 }
+
+function updateGoInstall() {
+
+    if [ -d ~/src/go ]; then
+        cd src/go/src
+        hg pull -v
+        hg update -v release 
+        ./all.bash
+    else
+        echo "pull source from google code"
+    fi
+}
+
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+# My Prompt
+export PS1='\e[7m\w\e[0m $(parse_git_branch)\n\h > '
+
+# My fortune
+if [ -n `which fortune` ]; then
+    fortune
+fi
