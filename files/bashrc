@@ -1,4 +1,5 @@
 set -o vi
+unalias -a
 
 if [ -n `which subl` ]; then
     export EDITOR='subl -w'
@@ -26,6 +27,7 @@ fi
 if [ -n `which git` ]; then
     alias gitco='git checkout'
     alias gitbr='git branch'
+    alias gits='git status'
 fi
 
 
