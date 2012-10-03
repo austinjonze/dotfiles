@@ -34,6 +34,8 @@ fi
 # OS Specifics (i.e. Linux or Mac)
 if [[ `uname` == 'Linux' ]]; then
     alias chrome="chromium-browser > /dev/null 2>&1"
+    alias pan="pan > /dev/null 2>&1"
+    alias gqview="geeqie > /dev/null 2>&1"
 elif [[ `uname` == 'Darwin' ]]; then
     # mac aliases
     alias objc='gcc -arch i386 -lobjc -framework Cocoa'
@@ -44,7 +46,6 @@ elif [[ `uname` == 'Darwin' ]]; then
         *":/opt/local/bin:/opt/local/sbin:"*) :;;
     *) PATH="$PATH:/opt/local/bin:/opt/local/sbin";;
     esac
-    #export PATH=/opt/local/bin:/opt/local/sbin:usr/local/bin:$PATH
 
     # Finished adapting your PATH environment variable for use with MacPorts.
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
