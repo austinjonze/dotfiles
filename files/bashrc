@@ -1,6 +1,11 @@
 set -o vi
 unalias -a
 
+# set my aliases
+alias now='date + "%T"'
+alias vi=vim
+alias edit='vim'
+
 if [ -n `which subl` ]; then
     export EDITOR='subl -w'
 fi
@@ -28,6 +33,9 @@ if [ -n `which git` ]; then
     alias gitco='git checkout'
     alias gitbr='git branch'
     alias gits='git status'
+    # Everyday Git (http://code.joejag.com/2013/everyday-git-aliases/)
+    alias gitup=='git log --since yesterday --author austin'
+    alias gitpurr='git pull --rebase'
 fi
 
 
