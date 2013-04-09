@@ -15,7 +15,7 @@ task :bash => 'bashrc' do
     FileUtils.cp_r(bashProfileFile, dot_bash_profile)
 end
 
-task :copy_vim do
+task :vim do
     dotvim = $homedir + '/.vim'
     if(File.directory?(dotvim))
         puts "Does Exist"
@@ -25,7 +25,7 @@ task :copy_vim do
     end
 end
 
-task :copy_vimrc => 'copy_vim' do
+task :vimrc => 'vim' do
     puts "Copy vimrc file to $HOME"
     dotvimrc = $homedir + '/.vimrc'
     puts File.file?(dotvimrc)
