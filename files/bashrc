@@ -10,6 +10,9 @@ if [ -n `which subl` ]; then
     export EDITOR='subl -w'
 fi
 
+if [ -d $HOME/.nvm ]; then
+    [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
+fi
 
 if [ -d $HOME/bin ]; then
     case ":$PATH:" in 
@@ -66,22 +69,6 @@ fi
 
 
 # FUNCTIONS
-
-# ...........................................................................
-# nodejs
-# ...........................................................................
-function updateNodeInstall() {
-  mkdir -pv ~/src/node-latest-install
-  cd ~/src/node-latest-install
-  curl http://nodejs.org/dist/node-latest.tar.gz | tar xz --strip-components=1
-  ./configure
-  export JOBS=3
-  sudo make install
-  cd -
-
-  export NODE_PATH=/usr/local/lib/mode_modules
-}
-
 function updateGoInstall() {
 
     if [ -d ~/src/go ]; then
