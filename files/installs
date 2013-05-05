@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 nvm_install() {
     curl https://raw.github.com/creationix/nvm/master/install.sh | sh
@@ -6,12 +6,13 @@ nvm_install() {
 
 confirm() {
     arg1=$1
-    echo -n "install nvm? [N/y] "
-    read -n 1 REPLY
-    if test "$REPLY" = "y" -o "$REPLY" = "Y"; then
+    read -r -p "install nvm? [N/y]? " response 
+    if [[ $response =~ ^[Yy]$ ]] 
+    then
         $1
     else
-        echo "No installing NVM"
+        echo "Not installing NVM"
+        exit 1
     fi
 }
 
