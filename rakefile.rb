@@ -6,7 +6,7 @@ task :bashrc do
     FileUtils.cp_r(dot_bashrc, dot_bashrc + '.bak')
     FileUtils.cp_r(bashrcFile, dot_bashrc)
 end
-
+desc "Setup Bashfiles"
 task :bash => 'bashrc' do
     puts "Update bashrc & bash_profile"
     dot_bash_profile = $homedir + '/.bash_profile'
