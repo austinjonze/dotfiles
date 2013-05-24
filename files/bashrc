@@ -5,6 +5,7 @@ unalias -a
 alias now='date + "%T"'
 alias vi=vim
 alias edit='vim'
+alias gitk='gitk > /dev/null 2>&1'
 
 if [ -n `which subl` ]; then
     export EDITOR='subl -w'
@@ -62,7 +63,7 @@ elif [[ `uname` == 'Darwin' ]]; then
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
 
     # This is work related
-    rvm use 1.9.2-p290@orion_tests
+    # TODO: fix this ->rvm use 1.9.2-p290@orion_tests
 else
     echo "Amnesia"
 fi
