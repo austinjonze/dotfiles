@@ -25,6 +25,7 @@ task :vim do
     end
 end
 
+desc "Install vim configuration"
 task :vimrc => 'vim' do
     puts "Copy vimrc file to $HOME"
     dotvimrc = $homedir + '/.vimrc'
