@@ -11,25 +11,26 @@ task :bash => 'bashrc' do
     puts "Update bashrc & bash_profile"
     dot_bash_profile = $homedir + '/.bash_profile'
     bashProfileFile = './files/bash_profile'
-    FileUtils.cp_r(dot_bash_profile, dot_bash_profile + '.bak')
+    #FileUtils.cp_r(dot_bash_profile, dot_bash_profile + '.bak')
     FileUtils.cp_r(bashProfileFile, dot_bash_profile)
 end
 
 task :vim do
     dotvim = $homedir + '/.vim'
-    if(File.directory?(dotvim))
-        puts "Does Exist"
-    else
-        vimdir = './files/vim'
-        FileUtils.cp_r(vimdir, dotvim)
+    if(!File.directory?(dotvim))
+        FileUtils.mkdir(dotvim)
     end
+
+    vimdir = './files/vim/.'
+    FileUtils.cp_r(vimdir, dotvim)
 end
 
 desc "Install vim configuration"
 task :vimrc => 'vim' do
-    puts "Copy vimrc file to $HOME"
     dotvimrc = $homedir + '/.vimrc'
-    puts File.file?(dotvimrc)
+    vimrc = './files/vimrc'
+    #FileUtils.cp_r(dotvimrc, dotvimrc + '.bak')
+    FileUtils.cp_r(vimrc, dotvimrc)
 end
 
 task :copy_sublime_settings do

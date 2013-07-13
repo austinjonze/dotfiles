@@ -19,6 +19,9 @@ set ruler
 set nu
 set history=250
 
+"" New cursor settings
+set cursorline
+set colorcolumn=120
 
 "" Whitespace
 set smarttab
