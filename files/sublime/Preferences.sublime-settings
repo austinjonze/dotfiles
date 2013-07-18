@@ -1,10 +1,28 @@
 {
-	"font_size": 8.0,
-	"rulers" : [80, 120],
-	"tab_size" : 2,
-	"translate_tabs_to_spaces" : true,
-	"trim_automatic_white_space" : true,
-	"trim_trailing_white_space_on_save" : true,
-	"word_wrap" : false,
-	"font_face" : "menlo"
+   "rulers" : [80, 120],
+   "tab_size" : 3,
+   "font_size": 10.0,
+   "font_face" : "menlo",
+    "font_options" :
+    [
+        "no_bold",
+        "subpixel_antialias"
+    ],
+    "highlight_line" : true,
+    "highlight_modified_tabs" : true,
+    "bold_foler_labels": true,
+    "file_exclude_patterns" :
+    [
+        ".DS_Store",
+        ".swp"
+    ],
+    "folder_exclude_patterns" :
+    [
+        ".git"
+    ],
+   "translate_tabs_to_spaces" : true,
+   "trim_automatic_white_space" : true,
+   "trim_trailing_white_space_on_save" : true,
+    "vintage_start_in_command_mode" : true,
+   "word_wrap" : false
 }

@@ -36,8 +36,8 @@ end
 desc "Setup Sublime"
 task :sublime do
    shortcut_sublime = `sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/bin/subl`
+   printf "If needed execute Pakcage Manger script within Sublime Text 2\n"
 end
-
 
 task :default => [:bash]
 
