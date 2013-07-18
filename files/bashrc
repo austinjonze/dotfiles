@@ -53,17 +53,6 @@ elif [[ `uname` == 'Darwin' ]]; then
     alias objc='gcc -arch i386 -lobjc -framework Cocoa'
     alias chromefile='open /Application/Google\ Chrome.app --args --allow-file-access-from-files'
 
-    # MacPorts Installer addition on 2011-11-08_at_11:35:59: adding an appropriate PATH variable for use with MacPorts.
-    case ":$PATH:" in 
-        *":/opt/local/bin:/opt/local/sbin:"*) :;;
-    *) PATH="$PATH:/opt/local/bin:/opt/local/sbin";;
-    esac
-
-    # Finished adapting your PATH environment variable for use with MacPorts.
-    [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
-
-    # This is work related
-    # TODO: fix this ->rvm use 1.9.2-p290@orion_tests
 else
     echo "Amnesia"
 fi
@@ -91,6 +80,6 @@ parse_git_branch() {
 export PS1='\e[7m\w\e[0m $(parse_git_branch)\n\h > '
 
 # My fortune
-if [ -n `which fortune` ]; then
+if [ `which fortune` ]; then
     fortune
 fi
