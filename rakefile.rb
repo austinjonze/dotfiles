@@ -33,17 +33,11 @@ task :vimrc => 'vim' do
     FileUtils.cp_r(vimrc, dotvimrc)
 end
 
-task :copy_sublime_settings do
-    puts "copy sublime settings appropriately"
+desc "Setup Sublime"
+task :sublime do
+   shortcut_sublime = `sudo ln -s "/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" /usr/bin/subl`
 end
 
-task :update_vimrc do
-    puts "Update .vimrc in repo"
-end
-
-task :update_vim do
-    puts "Update vim in repo"
-end
 
 task :default => [:bash]
 
