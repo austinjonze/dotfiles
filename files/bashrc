@@ -28,7 +28,8 @@ if [ -d $HOME/src/go ]; then
 fi
 
 # My Prompt
-export PS1='\e[7m\w\e[0m $(parse_git_branch)\n\h > '
+#export PS1='\e[7m\w\e[0m $(parse_git_branch)\n\h > '
+export PS1="\n\u \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\]\n \j -> "
 
 # My fortune
 if [ `which fortune` ]; then
@@ -38,6 +39,7 @@ fi
 # Some weather
 curl -4 https://wttr.in/rockville\?0
 
+# Check for other bash configs
 
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
