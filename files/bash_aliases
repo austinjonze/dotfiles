@@ -1,0 +1,31 @@
+# direct aliases
+alias now='date + "%T"'
+alias vi=vim
+alias edit='vim'
+alias gitk='gitk > /dev/null 2>&1'
+
+# aliases dependent on installs
+
+# GIT aliases
+if [ -n `which git` ]; then
+    alias gitco='git checkout'
+    alias gitbr='git branch'
+    alias gits='git status'
+    # Everyday Git (http://code.joejag.com/2013/everyday-git-aliases/)
+    alias gitup=='git log --since yesterday --author austin'
+    alias gitpurr='git pull --rebase'
+fi
+
+# OS Specifics (i.e. Linux or Mac)
+if [[ `uname` == 'Linux' ]]; then
+    alias chrome="chromium-browser > /dev/null 2>&1"
+    alias pan="pan > /dev/null 2>&1"
+    alias gqview="geeqie > /dev/null 2>&1"
+elif [[ `uname` == 'Darwin' ]]; then
+    # mac aliases
+    alias objc='gcc -arch i386 -lobjc -framework Cocoa'
+    alias chromefile='open /Application/Google\ Chrome.app --args --allow-file-access-from-files'
+
+else
+    echo "Amnesia"
+fi

@@ -1,0 +1,17 @@
+# FUNCTIONS
+function updateGoInstall() {
+
+    if [ -d ~/src/go ]; then
+        cd src/go/src
+        hg pull -v
+        hg update -v release 
+        ./all.bash
+        cd .
+    else
+        echo "pull source from google code"
+    fi
+}
+
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
