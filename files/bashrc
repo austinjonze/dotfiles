@@ -38,3 +38,12 @@ fi
 # Some weather
 curl -4 https://wttr.in/rockville\?0
 
+
+if [ -f ~/.bash_aliases ]; then
+    source ~/.bash_aliases
+fi
+
+if [ -f ~/.bash_functions ]; then
+    source ~/.bash_functions
+fi
+
