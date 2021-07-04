@@ -1,6 +1,15 @@
 set -o vi
 unalias -a
 
+# Exports 
+
+# Edit Last command
+export FCEDIT=vim
+
+# My Prompt
+#export PS1='\e[7m\w\e[0m $(parse_git_branch)\n\h > '
+export PS1="\n\u \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\]\n \j -> "
+
 if [ -n `which subl` ]; then
     export EDITOR='subl -w'
 fi
@@ -9,12 +18,6 @@ if [ -d $HOME/.nvm ]; then
     [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
 fi
 
-if [ -d $HOME/bin ]; then
-    case ":$PATH:" in 
-        *":/usr/local/bin:$HOME/bin:"*) :;;
-    *) PATH="$PATH:/usr/local/bin:$HOME/bin";;
-    esac
-fi
 
 if [ -d $HOME/src/go ]; then
 
@@ -27,17 +30,15 @@ if [ -d $HOME/src/go ]; then
     esac
 fi
 
-# My Prompt
-#export PS1='\e[7m\w\e[0m $(parse_git_branch)\n\h > '
-export PS1="\n\u \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\]\n \j -> "
 
-# My fortune
-if [ `which fortune` ]; then
-    fortune
+# Update PATH
+
+if [ -d $HOME/bin ]; then
+    case ":$PATH:" in 
+        *":/usr/local/bin:$HOME/bin:"*) :;;
+    *) PATH="$PATH:/usr/local/bin:$HOME/bin";;
+    esac
 fi
-
-# Some weather
-curl -4 https://wttr.in/rockville\?0
 
 # Check for other bash configs
 
@@ -49,3 +50,10 @@ if [ -f ~/.bash_functions ]; then
     source ~/.bash_functions
 fi
 
+# My fortune
+if [ `which fortune` ]; then
+    fortune
+fi
+
+# Some weather
+curl -4 https://wttr.in/rockville\?0
