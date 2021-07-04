@@ -1,8 +1,8 @@
 " Vim Resource Configuration File
 
 " The easy way to install vim plugins
-call pathogen#infect()
-call pathogen#helptags()
+" call pathogen#infect()
+" call pathogen#helptags()
 
 "" Basic setup
 set nocompatible                  " choose no compatibility with legacy vi
